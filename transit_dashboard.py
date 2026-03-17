@@ -158,9 +158,22 @@ with tab3:
     st.plotly_chart(fig, use_container_width=True)
 
 # Production footer
+# st.markdown("""
+# <div style='text-align: center; padding: 1.5rem; color: #666; border-top: 1px solid #eee;'>
+#     <p><strong>Production Ready</strong> | API-First | Auto-Failover | Hyderabad RTC</p>
+#     <p>🕐 Last update: <em>{}</em></p>
+# </div>
+# """.format(datetime.now().strftime("%Y-%m-%d %H:%M:%S")), unsafe_allow_html=True)
+from datetime import datetime, timezone, timedelta
+
+# Add IST timezone (UTC + 5:30)
+IST = timezone(timedelta(hours=5, minutes=30))
+
+# Replace the footer with:
+ist_now = datetime.now(IST).strftime("%Y-%m-%d %H:%M:%S")
 st.markdown("""
 <div style='text-align: center; padding: 1.5rem; color: #666; border-top: 1px solid #eee;'>
     <p><strong>Production Ready</strong> | API-First | Auto-Failover | Hyderabad RTC</p>
-    <p>🕐 Last update: <em>{}</em></p>
+    <p>🕐 Last update (IST): <em>{}</em></p>
 </div>
-""".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S")), unsafe_allow_html=True)
+""".format(ist_now), unsafe_allow_html=True)
